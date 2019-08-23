@@ -17,6 +17,7 @@ def get_challenge_flag(n):
 def strip_challenge(n):
     flag = get_challenge_flag(n).encode()
     repl_flag = b"{NOT_a_real_flag}"
+    repl_flag += (len(flag)-len(repl_flag))*b" "
     f = open("../level{}/a.out".format(n), "rb")
     s = f.read()
     f.close()
