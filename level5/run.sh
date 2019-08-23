@@ -1,1 +1,1 @@
-socat -dd TCP4-LISTEN:9005,fork,reuseaddr EXEC:./a.out,pty,setuid=firzen,echo=0,raw,iexten=0 &
+socat -dd TCP4-LISTEN:9005,fork,reuseaddr EXEC:./a.out,pty,setuid=ctf,echo=0,raw,iexten=0 &
