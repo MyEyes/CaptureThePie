@@ -68,7 +68,7 @@ def home():
 @app.route('/challenge/<int:n>')
 def challenge_page(n):
     challenge_info = {
-        "title": "Level {}".format(n),
+        "title": "Level {} (Port {})".format(n,9000+n),
 	"description": get_description(n),
 	"code": get_code(n),
     }

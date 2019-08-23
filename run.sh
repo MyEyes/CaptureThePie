@@ -1,4 +1,5 @@
 #!/bin/sh
 for d in level*/; do
-  $d/run.sh &
+  cd $d && ./run.sh
+  cd ..
 done
