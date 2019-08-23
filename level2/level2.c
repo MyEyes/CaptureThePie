@@ -19,6 +19,9 @@ int main(int argc, char **argv)
 
 	gets(tmpBuffer);
 	strncpy(local.buffer, tmpBuffer, strlen(tmpBuffer));
+	if(strlen(tmpBuffer)<0x80){
+		local.buffer[strlen(tmpBuffer)+1]=0;
+	}
 
 	if(strcmp(local.secret,local.check)){
 		printf("You think you can overwrite my secret? No way!\n");
