@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block header %}
+	<h1>{% block title %}{{ info.title }}{% endblock %}</h1>
+	<style>
+    .codebox {
+        /* Below are styles for the codebox (not the code itself) */
+        border:1px solid black;
+        background-color:#EEEEFF;
+        overflow:auto;    
+        padding:10px;
+	white-space: pre;
+    }
+    .codebox code {
+        /* Styles in here affect the text of the codebox */
+        font-size:0.9em;
+        /* You could also put all sorts of styling here, like different font, color, underline, etc. for the code. */
+    }
+	</style>
+{% endblock %}
+
+{% block content %}
+	<h2>Description</h2>
+	<pre>{{ info.description }}</pre>
+	<h2>Code</h2>
+	<div class="codebox">{{ info.code }}</div>
+	<h2>Download Binary</h2>
+	<form method="post" action={{ url_for("download", n=level, file="a.out") }}>
+	  <label for="auth">Last Flag</label>
+          <input name="auth" id="auth" required>
+	  <input type="submit" value="Download">
+	</form>
+{% endblock %}

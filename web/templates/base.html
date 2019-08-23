@@ -1,0 +1,21 @@
+<!doctype html>
+<title>{% block title %}{% endblock %} - Flaskr</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<nav>
+  <h1>Capture the Pie</h1>
+  <ul>
+	<li><a href={{ url_for("home") }}>Home</a>
+	{% for level in levels %}
+	<li><a href={{ url_for("challenge_page",n=level) }}>Level {{ level  }}</a>
+	{% endfor %}
+  </ul>
+</nav>
+<section class="content">
+  <header>
+    {% block header %}{% endblock %}
+  </header>
+  {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+  {% block content %}{% endblock %}
+</section>
