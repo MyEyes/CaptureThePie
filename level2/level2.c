@@ -3,17 +3,18 @@
 #include <string.h>
 #include "flag.h"
 
+char check[0x20];
+
 int main(int argc, char **argv)
 {
 	struct{
 		char buffer[0x80];
 		char secret[0x20];
-		char check[0x20];
 	} local;
 	char tmpBuffer[0x100];
 
 	strcpy(local.secret, FLAG);
-	strcpy(local.check, FLAG);
+	strcpy(check, FLAG);
 
 	printf("Ha!\nI learned my lesson.\nThis time there's a redundancy check and the secret is the flag!\nSo if you overwrite it, you get nothing!\nWhat's your guess?\n");
 
@@ -23,7 +24,7 @@ int main(int argc, char **argv)
 		local.buffer[strlen(tmpBuffer)+1]=0;
 	}
 
-	if(strcmp(local.secret,local.check)){
+	if(strcmp(local.secret,check)){
 		printf("You think you can overwrite my secret? No way!\n");
 	}
 	else if(strcmp(local.secret,local.buffer))
