@@ -1,0 +1,3 @@
+In this challenge you are also ment to guess a secret, but this time the secret is the flag.
+There are some extra "security measures" that actually make this less secure, can you find a way
+to extract the flag?
