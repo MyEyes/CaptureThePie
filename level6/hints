@@ -1,0 +1,4 @@
+All the hints from the previous two challenges apply more or less.
+Before you can do anything to the control flow you need to <strong>find out where you are</strong>.
+You can either try to use <strong>printf</strong> again and set up the stack for it<br>or do a somewhat more <strong>complicated ROP chain</strong> that also requires working out where the stack is
+If you go the <strong>mov r0, r3</strong> route, notice that this time your gadget has side effects that you need to account for.
