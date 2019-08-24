@@ -24,6 +24,12 @@
 	<pre>{{ info.description }}</pre>
 	<h2>Code</h2>
 	<div class="codebox">{{ info.code }}</div>
+	{% if info.hints|length > 0 %}
+	<h2>Hints</h2>
+	{% for hint in info.hints %}
+	<details><summary>Hint</summary>{{ hint }}</details>
+	{% endfor %}
+	{% endif %}
 	<h2>Download Binary</h2>
 	<form method="post" action={{ url_for("download", n=level, file="a.out") }}>
 	  <label for="auth">Last Flag</label>

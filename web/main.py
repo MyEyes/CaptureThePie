@@ -58,6 +58,15 @@ def get_code(n):
     except Exception:
        return "Error reading file {}".format(file)
 
+def get_hints(n):
+    file = "../level{}/hints".format(n)
+    try:
+        f = open(file, "r")
+        lines = f.readlines()
+        return lines
+    except Exception:
+        return []
+
 #Just work out the number of levels once at the start
 get_levels()
 
@@ -72,6 +81,7 @@ def challenge_page(n):
         "title": "Level {} (Port {})".format(n,9000+n),
 	"description": get_description(n),
 	"code": get_code(n),
+	"hints": get_hints(n),
     }
     return flask.render_template('challenge.html', levels=range(0,num_levels), level=n, info=challenge_info)
 
