@@ -1,3 +1,3 @@
 In this challenge there is nothing printing the flag.
 But other things are printed, so maybe the last technique can be used to print something we want instead.
-The code has been compiled with ASLR this time, so addresses might be harder to find.
+The code has been compiled with PIE this time, so addresses might be harder to find.

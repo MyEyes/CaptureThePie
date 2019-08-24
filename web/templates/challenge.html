@@ -27,7 +27,7 @@
 	{% if info.hints|length > 0 %}
 	<h2>Hints</h2>
 	{% for hint in info.hints %}
-	<details><summary>Hint</summary>{{ hint }}</details>
+	<details><summary>Hint</summary>{{ hint|safe }}</details>
 	{% endfor %}
 	{% endif %}
 	<h2>Download Binary</h2>

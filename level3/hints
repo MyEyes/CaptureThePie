@@ -1,0 +1,4 @@
+You will need to look at some assembly code for this challenge. <strong>objdump -d</strong> is a good basic tool for that
+If you can make the program go to the <strong>win()</strong> function you'll get the flag
+The buffer we write to is on the stack and so is the return address of the function
+<a href=http://www.badnack.it/guide/Crack/howtoexploitabofen.php>This</a> is an introduction into how to do this in x86

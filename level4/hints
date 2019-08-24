@@ -1,0 +1,5 @@
+The code is compiled with <strong>PIE</strong>. That means that the base address of the binary will be somewhere else every time.
+The flag is in the binary, so the address you are told also gives you information about where the binary has been loaded.
+You can use the trick you used to call the win function last time <strong>multiple times in a row</strong> if the code returns from the stack again.
+The first parameter to a function call is in <strong>r0</strong> so if you get the flags address in r0 you can print it out.
+Here's an introduction to <a href=http://codearcana.com/posts/2013/05/28/introduction-to-return-oriented-programming-rop.html>Return oriented programming (ROP)</a><br>It's for x86 though. The assembly is different, but the idea is the same.

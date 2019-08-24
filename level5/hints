@@ -1,0 +1,3 @@
+Even if there's no explicit address told to you, there's usually addresses in memory still
+Printf will interpret and print out values in registers or on the stack with the correct format string
+You get to input something to the program twice, so you can work out where you are the first time and use that information the second time.

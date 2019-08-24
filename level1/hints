@@ -1,0 +1,3 @@
+There is nothing preventing us from sending as many characters as we want.
+<strong>gets</strong> does not stop reading on a zero byte.
+<strong>A zero byte</strong> terminates a c string. So you can write more than one.

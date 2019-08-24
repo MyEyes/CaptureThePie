@@ -1,0 +1,3 @@
+<strong>strncpy</strong> does not add a zero byte if the string being copied is at least as long as <strong>n</strong>
+The servers response tells you if what's currently in the secret buffer matches what's in the check buffer
+If you try to guess only one character at a time that's at most 127 characters in standard ASCII
