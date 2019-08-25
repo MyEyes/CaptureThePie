@@ -1,0 +1,5 @@
+Last time you only had to overwrite the super_user flag. But that doesn't help you here unless you can somehow activate that function.
+If you can take over a pointer you might be able to read or write anywhere.
+If you can take over a <strong>function pointer</strong> that is called you can redirect the program flow.
+The struct doesn't contain function pointers, but almost all programs have things like the <strong>global offset table (GOT)</strong>.
+If you print binary data as a stringi.<br> <strong>u32</strong> from pwntools or <strong>struct.unpack</strong> from the struct python package<br>can be very useful in interpreting it.

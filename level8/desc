@@ -1,0 +1,3 @@
+This level is very similiar to the previous one except that this time the debug and print flag options don't exist.
+We have been given the ability to print non-debug info about a user though.
+On top of that we also get to update their memos now.
