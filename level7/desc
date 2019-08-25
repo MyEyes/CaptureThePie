@@ -1,0 +1,3 @@
+All levels so far have been buffer overflows.
+But this time there aren't any. (Hopefully)
+Instead there is a logical error in the program that allows you to change a value you aren't normally supposed to be able to change.

@@ -1,0 +1,4 @@
+The type of vulnerability is commonly known as <strong>use after free (UAF)</strong>
+You can use the debug functionality to check if things are where you expect them to be.
+<strong>strdup</strong> allocates memory the size of the input string
+If memory has been freed recently, the standard allocator will try to reuse it if the requested memory fits
