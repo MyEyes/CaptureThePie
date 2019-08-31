@@ -142,7 +142,7 @@ void show_info()
 	}
 	const char *no_memo="None";
 	char* memo = (char*)current->memo?current->memo:no_memo;
-	printf("Account:%x\n\tSuper: %d\n\tName: %s\n\tMemo: %s(@0x%x)\n", current, current->super_account, current->username, memo, memo);
+	printf("Account:\n\tSuper: %d\n\tName: %s\n\tMemo: %s(@0x%lx)\n", current->super_account, current->username, memo, memo);
 }
 
 
@@ -165,7 +165,7 @@ int main(int argc, char **argv)
 			//case 6: show_debug(); break; //No more debug info
 			case 5: update_memo(); break;
 			case 6: show_info(); break;
-			default: printf("Nah"); exit(-1);
+			default: printf("Nah"); exit(-1); return -1;
 		}
 	}
 }
