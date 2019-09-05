@@ -9,9 +9,9 @@ char name[0x80];
 
 typedef struct {
 	int	super_account;
+	char	*memo;
 	char	username[0x20];
 	char	password[0x20]; 
-	char	*memo;
 } account_t;
 
 account_t *current = 0;
