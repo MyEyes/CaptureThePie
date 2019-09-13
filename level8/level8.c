@@ -142,7 +142,7 @@ void show_info()
 	}
 	const char *no_memo="None";
 	const char* memo = (const char*)current->memo?current->memo:no_memo;
-	printf("Account:\n\tSuper: %d\n\tName: %s\n\tMemo: %s(@0x%x)\n", current->super_account, current->username, memo, memo);
+	printf("Account:\n\tSuper: %d\n\tName: %s\n\tMemo (first 10): %.10s(@0x%x)\n", current->super_account, current->username, memo, memo);
 }
 
 
