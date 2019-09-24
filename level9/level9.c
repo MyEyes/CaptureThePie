@@ -117,7 +117,7 @@ void delete_account()
 	current = NULL;
 	printf("Account deleted!");
 }
-
+/* HA, no more flag printing for you
 void show_flag()
 {
 	if(!current)
@@ -131,7 +131,7 @@ void show_flag()
 		return;
 	}
 	printf(FLAG);
-}
+}*/
 
 void show_info()
 {
@@ -142,7 +142,7 @@ void show_info()
 	}
 	const char *no_memo="None";
 	const char* memo = (const char*)current->memo?current->memo:no_memo;
-	printf("Account:\n\tSuper: %d\n\tName: %s\n\tMemo Addr: 0x%x\n", current->super_account, current->username, memo, memo);
+	printf("Account:\n\tSuper: %d\n\tName: %s\n\tMemo at: %x\n", current->super_account, current->username, memo);
 }
 
 
