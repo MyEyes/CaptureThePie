@@ -12,7 +12,7 @@ int main(int argc, char **argv)
 		char secret[0x20];
 	} local;
 	char tmpBuffer[0x100];
-
+	memset(local.buffer, 0, sizeof(local.buffer));
 	strcpy(local.secret, FLAG);
 	strcpy(check, FLAG);
 
@@ -20,9 +20,6 @@ int main(int argc, char **argv)
 
 	gets(tmpBuffer);
 	strncpy(local.buffer, tmpBuffer, strlen(tmpBuffer));
-	if(strlen(tmpBuffer)<0x80){
-		local.buffer[strlen(tmpBuffer)+1]=0;
-	}
 
 	if(strcmp(local.secret,check)){
 		printf("You think you can overwrite my secret? No way!\n");
