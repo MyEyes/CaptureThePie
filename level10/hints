@@ -1,0 +1,7 @@
+You will have to be a bit more creative with how you can take over the control flow this time.
+The way you overwrote the GOT last time will also come in handy this time.
+You will have to start a ROP chain somehow.
+Ideally you can control a buffer on the stack and then get to redirect command execution afterwards.
+Alternatively you can try to redirect the stack to some heap area you control.
+You can write at an arbitrary location by using the memo trick from last challenge.
+If you need 0s in your payload you can write a single 0 byte per arbitrary write, write your payload backwards.
