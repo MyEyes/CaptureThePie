@@ -147,7 +147,7 @@ int main(int argc, char **argv)
 	char buffer[0x8];
 	setup_protection();
 	printf("Welcome to the our account manager\n");
-	printf("free_hook: 0x%x\n", __free_hook);
+	printf("free_hook: 0x%p\npageFlags: 0x%p\n", __free_hook, pageFlags);
 
 	while(1)
 	{
