@@ -26,8 +26,15 @@ def strip_challenge(n):
     f.write(sn)
     f.close()
 
+def stripped_needs_update(n):
+    stripped = "download/level{}".format(n)
+    original = "../level{}/a.out".format(n)
+    if not os.path.isfile(stripped):
+        return True
+    return os.stat(stripped).st_mtime < os.stat(original).st_mtime
+
 def download_challenge(n):
-    if not os.path.isfile("download/level{}".format(n)):
+    if stripped_needs_update(n):
         strip_challenge(n)
     return flask.send_from_directory("download", "level{}".format(n), as_attachment=True)
 
