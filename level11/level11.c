@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "flag.h"
 
 #define TYPE_UCHAR 1
 #define TYPE_USHORT 2
@@ -12,6 +13,7 @@ typedef struct {
 	char name[0x10];
 	unsigned char type;
 	size_t size;
+	size_t tSize;
 	void* buffer;
 } generic_array_t;
 
@@ -42,6 +44,7 @@ void* alloc_array(char type, size_t size)
 	}
 	array->type = type;
 	array->size = size;
+	array->tSize = tSize;
 	array->buffer = buffer;
 	printf("Created array with %d entries\n", array->size);
 	return array;
@@ -131,6 +134,11 @@ void set_array_value(generic_array_t *arr, unsigned int idx, unsigned int value)
 	}
 }
 
+void show_array_info(generic_array_t *arr)
+{
+	printf("Array (@%p->%p)\nName:\t%s\nEntrySize\t%d\nNumEntries\t%d\n", arrays, arr, arr->name, arr->tSize, arr->size);
+}
+
 unsigned int parse_index(char* input)
 {
 	char *lBrPos = strstr(input, "[");
@@ -183,7 +191,10 @@ void parse_assignment(char* lhs, char* rhs)
 			return;
 		generic_array_t* newArray = create_array(newPtr+4);
 		if(!newArray)
-			return;	
+			return;
+		char* end = lhs+strlen(lhs)-1;
+		while(*end==' ')
+			*end-- = 0;
 		strcpy(newArray->name, lhs);
 		arrays[curArrayIndex++] = newArray;
 		return;
@@ -192,6 +203,8 @@ void parse_assignment(char* lhs, char* rhs)
 	{
 		unsigned int val = resolve_value(rhs);
 		char* lBr = strstr(lhs, "[");
+		if(!lBr)
+			return;
 		*lBr-- = 0;
 		while(*lBr==' ')
 			*lBr-- = 0;
@@ -216,6 +229,16 @@ void parse_line(char *line)
 	}
 	else 
 	{
+		if(strncmp(line, "debug ", 6) == 0)
+		{
+			generic_array_t* arr = find_array(line+6);
+			if(arr)
+				show_array_info(arr);
+			else
+				printf("Couldn't find array %s\n", line+6);
+			return;
+
+		}
 		printf("Value: %d\n", resolve_value(line));
 	}
 }
