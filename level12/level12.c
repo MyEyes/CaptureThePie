@@ -7,6 +7,7 @@
 #define TYPE_USHORT 2
 #define TYPE_UINT 3
 
+#define MAX_ARRAY_SIZE (640 * 1024)
 #define MAX_ARRAYS 0x20
 
 typedef struct {
@@ -32,14 +33,19 @@ void* alloc_array(char type, size_t size)
 		case TYPE_UINT: tSize = 4; break;
 	}
 
-	void* buffer = malloc(tSize*size);
-	if (buffer == NULL){
-		printf("Couldn't allocate buffer\n");
+	generic_array_t *array = malloc(sizeof(generic_array_t));
+	if(array == NULL) {
 		return NULL;
 	}
-	generic_array_t *array = malloc(sizeof(generic_array_t));
-	if(array == NULL){
-		free(buffer);
+
+	if (size > MAX_ARRAY_SIZE / tSize) {
+		printf("640K should be enough for anybody -- Bill Gates\n");
+		return NULL;
+	}
+	void* buffer = malloc(tSize * size);
+	if (buffer == NULL) {
+		printf("Couldn't allocate buffer\n");
+		free(array);
 		return NULL;
 	}
 	array->type = type;
@@ -83,6 +89,11 @@ unsigned int get_array_value(generic_array_t *arr, unsigned int idx)
 	if(arr->size<=idx)
 		return -1;
 
+	if(idx > MAX_ARRAY_SIZE) {
+		printf("Oops\n");
+		exit(1);
+	}
+
 	if(arr->type == TYPE_UCHAR)
 	{
 		unsigned char *val = (unsigned char*) arr->buffer;
@@ -117,6 +128,11 @@ void set_array_value(generic_array_t *arr, unsigned int idx, unsigned int value)
 	if(arr->size<=idx)
 		return;
 
+	if(idx > MAX_ARRAY_SIZE) {
+		printf("Oops\n");
+		exit(1);
+	}
+
 	if(arr->type == TYPE_UCHAR)
 	{
 		unsigned char *val = (unsigned char*) arr->buffer;
@@ -137,6 +153,12 @@ void set_array_value(generic_array_t *arr, unsigned int idx, unsigned int value)
 void show_array_info(generic_array_t *arr)
 {
 	printf("Array (@%p->%p)\nName:\t%s\nEntrySize\t%d\nNumEntries\t%d\n", arrays, arr, arr->name, arr->tSize, arr->size);
+}
+
+void delete_array(generic_array_t *arr)
+{
+	free(arr->buffer);
+	free(arr);
 }
 
 unsigned int parse_index(char* input)
@@ -238,6 +260,17 @@ void parse_line(char *line)
 				printf("Couldn't find array %s\n", line+6);
 			return;
 
+		}
+		else if(strncmp(line, "del ", 4) == 0)
+		{
+			generic_array_t* arr = find_array(line+4);
+			if(!arr)
+			{
+				printf("Couldn't find array %s\n", line+4);
+				return;
+			}
+			delete_array(arr);
+			return;
 		}
 		printf("Value: %d\n", resolve_value(line));
 	}
