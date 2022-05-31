@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "flag.h"
 
+#ifdef __arm__
 int dummy()
 {
 	asm volatile(
@@ -8,6 +9,7 @@ int dummy()
 		"pop {pc}\n\t"	
 	);
 }
+#endif
 
 void test()
 {
