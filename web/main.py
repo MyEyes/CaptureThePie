@@ -27,6 +27,8 @@ def strip_challenge(n):
     f.close()
 
 def stripped_needs_update(n):
+    if not os.path.exists("download"):
+        os.mkdir("download")
     stripped = "download/level{}".format(n)
     original = "../level{}/a.out".format(n)
     if not os.path.isfile(stripped):
